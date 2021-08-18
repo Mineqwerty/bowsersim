@@ -60,7 +60,6 @@ UNUSED static const u64 binid_12 = 12;
 #include "goomba/anims/table.inc.c"
 UNUSED static const u64 binid_13 = 13;
 
-
 UNUSED static const u64 binid_14 = 14;
 
 #include "metal_box/model.inc.c"
@@ -77,4 +76,3 @@ UNUSED static const u64 binid_17 = 17;
 
 #include "koopa_shell/model.inc.c"
 UNUSED static const u64 binid_18 = 18;
-

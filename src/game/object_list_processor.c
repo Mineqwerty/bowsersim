@@ -19,6 +19,7 @@
 #include "platform_displacement.h"
 #include "profiler.h"
 #include "spawn_object.h"
+#include "puppyprint.h"
 
 
 /**
@@ -96,8 +97,6 @@ struct Object *gMarioObject;
  * shadow.c.
  */
 struct Object *gLuigiObject;
-
-struct Object *gBowserObject;
 
 /**
  * The object whose behavior script is currently being updated.
@@ -632,6 +631,10 @@ UNUSED static u16 unused_get_elapsed_time(u64 *cycleCounts, s32 index) {
  */
 void update_objects(UNUSED s32 unused) {
     s64 cycleCounts[30];
+    #ifdef PUPPYPRINT
+    OSTime first = osGetTime();
+    OSTime colTime = collisionTime[perfIteration];
+    #endif
 
     cycleCounts[0] = get_current_clock();
 
@@ -690,4 +693,8 @@ void update_objects(UNUSED s32 unused) {
     }
 
     gPrevFrameObjectCount = gObjectCounter;
+    #ifdef PUPPYPRINT
+    profiler_update(behaviourTime, first);
+    behaviourTime[perfIteration] -= collisionTime[perfIteration]+colTime;
+    #endif
 }

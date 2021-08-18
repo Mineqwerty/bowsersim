@@ -10,7 +10,6 @@
 #include "s2d_ustdlib.h"
 #include "s2d_error.h"
 
-
 static int s2d_width(const char *str, int line, int len);
 
 enum S2DPrintModes {

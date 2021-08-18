@@ -44,7 +44,7 @@ extern u8 gControllerBits;
 extern u8 gIsConsole;
 extern int gTimer;
 #ifdef WIDE
-extern u8 gWidescreen;
+extern s16 gWidescreen;
 #endif
 extern u8 gBorderHeight;
 #ifdef CUSTOM_DEBUG

@@ -11,7 +11,6 @@
 #include "lakitu_cameraman/anims/table.inc.c"
 UNUSED static const u64 binid_0 = 0;
 
-
 UNUSED static const u64 binid_1 = 1;
 
 #include "mips/model.inc.c"

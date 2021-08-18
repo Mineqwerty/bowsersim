@@ -1,12 +1,14 @@
 # HackerSM64
 **AFTER CLONING THE REPO, CHECK OUT THE `include/config.h` FILE BEFORE ANYTHING ELSE! IT THERE'S A LOT OF STUFF IN THIS REPO THAT CAN BE TOGGLED THERE.**
 
+This repo needs BOTH an US ROM and a JP ROM in order to build. Place baserom.us.z64 in the repo as usual and ALSO place baserom.jp.z64
+
 This repo needs gcc in order to be able to build it. To install it, run `sudo apt install gcc-mips-linux-gnu`
 
 This is a fork of the ultrasm64 repo by CrashOveride which includes the following commonly used patches (patches marked with `*` are toggleable in `config.h`): 
 
-**About Puppycam**
-- Puppycam is available **on a dedicated branch**. If you want puppycam in your hack, clone the `puppycamera2` branch instead of `master`.
+**Puppycam**
+- Puppycam is available on the master branch now, you can toogle it in config.h. *
 
 **Collision:**
 - Slope fix and exposed ceilings fix
@@ -77,6 +79,10 @@ This is a fork of the ultrasm64 repo by CrashOveride which includes the followin
 - Skybox size modifier. You can have 2x, 3x and 4x size skyboxes (you can select the skybox size in `config.h`.) Please note that this might affect console performance, especially 4x mode. 2x or 3x mode is recommended if aiming for console. By CowQuack *
 - You can set the black border size to different values for console and emulator. It's set to 0 by default for both. *
 - This repo supports much better implementation of reverb over vanilla's fake echo reverb. Great for caves or eerie levels, as well as just a better audio experience in general. See `audio/synthesis.c` for more configuration info. (By ArcticJaguar725) *
+- Fazana's "puppyprint" text engine. *
+  - Use `print_small_text` to print normal text. The two last params are aligment and how many characters to print (-1 means PRINT_ALL). 
+  - Use `render_multi_image` to draw large texture rectangles consisting of multiple images on the screen.
+  - More info in `puppyprint.c`
 
 # UltraSM64
 
@@ -127,7 +133,6 @@ Both methods are fast. Method 1 has better compression than 2, so I suggest usin
 To switch to RNC, run make with either ``COMPRESS=rnc1`` or ``COMPRESS=rnc2``, depending on preferred method.
 
 The repository also supports using DEFLATE compression. This boasts a better compression ratio, but at a slight cost to load times.
-
 On average I'd estimate that the bottleneck on decompression is about 1-2 seconds.
 
 To switch to gzip, run make with the ``COMPRESS=gzip`` argument.

@@ -29,7 +29,9 @@
 #ifdef SRAM
 #include "sram.h"
 #endif
+#include "puppyprint.h"
 #include <prevent_bss_reordering.h>
+#include "puppycam2.h"
 
 // First 3 controller slots
 struct Controller gControllers[3];
@@ -81,7 +83,7 @@ UNUSED static s32 sUnusedGameInitValue = 0;
 // General timer that runs as the game starts
 u32 gGlobalTimer = 0;
 #ifdef WIDE
-u8 gWidescreen;
+s16 gWidescreen;
 #endif
 
 // Framebuffer rendering values (max 3)
@@ -290,7 +292,7 @@ void create_gfx_task_structure(void) {
     gGfxSPTask->task.t.ucode_data = gspF3DEX_fifoDataStart;
 #elif   SUPER3D_GBI
     gGfxSPTask->task.t.ucode = gspSuper3D_fifoTextStart;
-    gGfxSPTask->task.t.ucode_data = gspSuper3D_fifoDataStart; 
+    gGfxSPTask->task.t.ucode_data = gspSuper3D_fifoDataStart;
 #else
     gGfxSPTask->task.t.ucode = gspFast3D_fifoTextStart;
     gGfxSPTask->task.t.ucode_data = gspFast3D_fifoDataStart;
@@ -416,7 +418,13 @@ void select_gfx_pool(void) {
  * - Selects which framebuffer will be rendered and displayed to next time.
  */
 void display_and_vsync(void) {
+    if (IO_READ(DPC_PIPEBUSY_REG) && gIsConsole != 1)
+    {
+        gIsConsole = 1;
+        gBorderHeight = BORDER_HEIGHT_CONSOLE;
+    }
     profiler_log_thread5_time(BEFORE_DISPLAY_LISTS);
+    //gIsConsole = (IO_READ(DPC_PIPEBUSY_REG));
     osRecvMesg(&gGfxVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
     if (gGoddardVblankCallback != NULL) {
         gGoddardVblankCallback();
@@ -705,6 +713,9 @@ void setup_game_memory(void) {
  */
 void thread5_game_loop(UNUSED void *arg) {
     struct LevelCommand *addr;
+    #ifdef PUPPYPRINT
+    OSTime lastTime = 0;
+    #endif
 
     setup_game_memory();
 #if ENABLE_RUMBLE
@@ -718,6 +729,9 @@ void thread5_game_loop(UNUSED void *arg) {
     createHvqmThread();
 #endif
     save_file_load_all();
+    #ifdef PUPPYCAM
+    puppycam_boot();
+    #endif
 
     set_vblank_handler(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) 1);
 
@@ -738,6 +752,14 @@ void thread5_game_loop(UNUSED void *arg) {
             continue;
         }
         profiler_log_thread5_time(THREAD5_START);
+        #ifdef PUPPYPRINT
+        while (TRUE)
+        {
+            lastTime = osGetTime();
+            collisionTime[perfIteration] = 0;
+            behaviourTime[perfIteration] = 0;
+            dmaTime[perfIteration] = 0;
+        #endif
 
         // If any controllers are plugged in, start read the data for when
         // read_controller_inputs is called later.
@@ -752,6 +774,23 @@ void thread5_game_loop(UNUSED void *arg) {
         select_gfx_pool();
         read_controller_inputs();
         addr = level_script_execute(addr);
+        #ifdef PUPPYPRINT
+        profiler_update(scriptTime, lastTime);
+            if (benchmarkLoop > 0 && benchOption == 0)
+            {
+                benchmarkLoop--;
+                benchMark[benchmarkLoop] = osGetTime() - lastTime;
+                if (benchmarkLoop == 0)
+                {
+                    puppyprint_profiler_finished();
+                    break;
+                }
+            }
+            else
+                break;
+        }
+        puppyprint_profiler_process();
+        #endif
 
         display_and_vsync();
 

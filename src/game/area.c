@@ -27,6 +27,7 @@
 #include "src/s2d_engine/s2d_draw.h"
 #include "src/s2d_engine/s2d_print.h"
 #include "src/s2d_engine/config.h"
+#include "puppyprint.h"
 
 struct SpawnInfo gPlayerSpawnInfos[1];
 struct GraphNode *gGraphNodePointers[MODEL_ID_COUNT];
@@ -439,6 +440,11 @@ s2d_init();
             clear_frame_buffer(gWarpTransFBSetColor);
         }
     }
+
+
+    #ifdef PUPPYPRINT
+    puppyprint_render_profiler();
+    #endif
 
     D_8032CE74 = NULL;
     D_8032CE78 = NULL;
