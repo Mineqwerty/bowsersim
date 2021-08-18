@@ -98,6 +98,7 @@ struct Object *gMarioObject;
  */
 struct Object *gLuigiObject;
 
+struct Object *gBowserObject;
 /**
  * The object whose behavior script is currently being updated.
  * This object is used frequently in object behavior code, and so is often

@@ -3414,19 +3414,19 @@ void init_camera(struct Camera *c) {
             // If it is, then set CamAct to the end to directly activate Bowser
             // If it isn't, then start cutscene
             if (gCurrDemoInput == NULL) {
-                start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
+                //start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
             } else if (gSecondCameraFocus != NULL) {
                 gSecondCameraFocus->oBowserCamAct = BOWSER_CAM_ACT_END;
             }
 #else
-            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
+            //start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
 #endif
             break;
         case LEVEL_BOWSER_2:
-            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
+            //start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
             break;
         case LEVEL_BOWSER_3:
-            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
+            //start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
             break;
 
         //! Hardcoded position checks determine which cutscene to play when Mario enters castle grounds.
