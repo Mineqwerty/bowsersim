@@ -71,7 +71,7 @@
 // Fixes the castle music sometimes triggering after getting a dialog
 #define CASTLE_MUSIC_FIX
 // Remove course specific camera processing
-#define CAMERA_FIX
+//#define CAMERA_FIX
 // Change the movement speed when hanging from a ceiling (the vanilla value is 4.f)
 #define HANGING_SPEED 12.f
 // Makes Mario face the direction of the analog stick directly while hanging from a ceiling, without doing "semicircles"

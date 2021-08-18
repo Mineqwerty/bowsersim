@@ -3419,7 +3419,7 @@ void init_camera(struct Camera *c) {
                 gSecondCameraFocus->oBowserCamAct = BOWSER_CAM_ACT_END;
             }
 #else
-            //start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
+            start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
 #endif
             break;
         case LEVEL_BOWSER_2:
