@@ -755,15 +755,41 @@ s8 obj_lava_death(void) {
 /**
  * Spawns an orange number object relatively, such as those that count up for secrets.
  */
-void spawn_orange_number(s8 behParam, s16 relX, s16 relY, s16 relZ) {
+void spawn_orange_number(s8 behParam, s16 relX, s16 relY, s16 relZ, int heightMod) {
     struct Object *orangeNumber;
+    struct Object *orangeNumber2;
+    struct Object *orangeNumber3;
+    int val1;
+    int val2;
+    int val3;
 
     if (behParam >= 10) {
-        return;
+        val1 = behParam / 10;
+        val2 = behParam %10 / 10;
+
+        orangeNumber = spawn_object_relative(val1, relX - 30, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber->oPosY += 25.0f;
+    orangeNumber2 = spawn_object_relative(val2, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber2->oPosY += 25.0f;
+    }
+    else if (behParam >= 100) {
+        val1 = behParam / 100;
+        val2 = behParam %100 / 100;
+        val3 = behParam %10;
+
+        orangeNumber = spawn_object_relative(val1, relX - (600 * sins(gMarioState->area->camera->yaw)), relY, relZ - 600 * (coss(gMarioState->area->camera->yaw)), o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber->oPosY += 25.0f;
+    orangeNumber2 = spawn_object_relative(val2, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber2->oPosY += 25.0f;
+    orangeNumber3 = spawn_object_relative(val3, relX + (600 * sins(gMarioState->area->camera->yaw)), relY, relZ + (600 * coss(gMarioState->area->camera->yaw)), o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber3->oPosY += 25.0f;
+    }
+    else {
+    orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
+    orangeNumber->oPosY += 25.0f * heightMod;
     }
 
-    orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
-    orangeNumber->oPosY += 25.0f;
+    
 }
 
 /**

@@ -367,6 +367,9 @@ void play_transition_after_delay(s16 transType, s16 time, u8 red, u8 green, u8 b
 }
 
 char myString[] = COLOR "50 50 50 0" SCALE "50" "SCORE: ";
+char pointTotal1[] = COLOR "50 50 50 0" SCALE "25" "/ 6000";
+char pointTotal2[] = COLOR "50 50 50 0" SCALE "25" "/ 7000";
+char pointTotal3[] = COLOR "50 50 50 0" SCALE "25" "/ 9000";
 
 void render_game(void) {
     if (gCurrentArea != NULL && !gWarpTransition.pauseRendering) {
@@ -398,12 +401,22 @@ s2d_init();
     sprintf(points, "%d", gMarioState->bowserPoints);
         uObjMtx *buffer;
         uObjMtx *buffer2;
+        uObjMtx *buffer3;
 	// substitute with a different alloc function as neccesary
 	buffer = alloc_display_list(0x400 * sizeof(uObjMtx));
     buffer2 = alloc_display_list(0x400 * sizeof(uObjMtx));
+    buffer3 = alloc_display_list(0x400 * sizeof(uObjMtx));
 
 	s2d_print(20, 20, ALIGN_LEFT, myString, buffer);
     s2d_print(100, 20, ALIGN_LEFT, points, buffer2);
+    switch(gCurrLevelNum) {
+        case LEVEL_BOWSER_1:
+    s2d_print(160, 20, ALIGN_LEFT, pointTotal1, buffer3); break;
+         case LEVEL_BOWSER_2:
+    s2d_print(160, 20, ALIGN_LEFT, pointTotal2, buffer3); break;
+         case LEVEL_BOWSER_3:
+    s2d_print(160, 20, ALIGN_LEFT, pointTotal3, buffer3); break;
+    }
 
 
 

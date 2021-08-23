@@ -39,7 +39,7 @@ void bhv_treasure_chest_top_loop(void) {
                 o->oFaceAnglePitch = -0x4000;
                 o->oAction++;
                 if (o->parentObj->oBehParams2ndByte != 4)
-                    spawn_orange_number(o->parentObj->oBehParams2ndByte, 0, -40, 0);
+                    spawn_orange_number(o->parentObj->oBehParams2ndByte, 0, -40, 0, 1);
             }
             break;
 

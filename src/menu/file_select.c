@@ -1204,30 +1204,30 @@ void bhv_menu_button_manager_init(void) {
     if (save_file_exists(SAVE_FILE_B) == TRUE) {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] =
             spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE,
-                                      bhvMenuButton, 1500, 2800, 0, 0, 0, 0);
+                                      bhvMenuButton, 1500, 280000, 0, 0, 0, 0);
     } else {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] =
             spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,
-                                      bhvMenuButton, 1500, 2800, 0, 0, 0, 0);
+                                      bhvMenuButton, 1500, 280000, 0, 0, 0, 0);
     }
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMenuButtonScale = 1.0f;
     // File C
     if (save_file_exists(SAVE_FILE_C) == TRUE) {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] =
             spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE,
-                                      bhvMenuButton, -6400, 0, 0, 0, 0, 0);
+                                      bhvMenuButton, -640000, 0, 0, 0, 0, 0);
     } else {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C] = spawn_object_rel_with_rot(
-            gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, bhvMenuButton, -6400, 0, 0, 0, 0, 0);
+            gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, bhvMenuButton, -640000, 0, 0, 0, 0, 0);
     }
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C]->oMenuButtonScale = 1.0f;
     // File D
     if (save_file_exists(SAVE_FILE_D) == TRUE) {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(
-            gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, bhvMenuButton, 1500, 0, 0, 0, 0, 0);
+            gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE, bhvMenuButton, 150000, 0, 0, 0, 0, 0);
     } else {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D] = spawn_object_rel_with_rot(
-            gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, bhvMenuButton, 1500, 0, 0, 0, 0, 0);
+            gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE, bhvMenuButton, 150000, 0, 0, 0, 0, 0);
     }
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMenuButtonScale = 1.0f;
     // Score menu button
@@ -1647,10 +1647,10 @@ void print_main_menu_strings(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_hud_lut_string(HUD_LUT_DIFF, SELECT_FILE_X, 35, textSelectFile);
     // Print file star counts
-    print_save_file_star_count(SAVE_FILE_A, SAVEFILE_X1, 78);
-    print_save_file_star_count(SAVE_FILE_B, SAVEFILE_X2, 78);
-    print_save_file_star_count(SAVE_FILE_C, SAVEFILE_X1, 118);
-    print_save_file_star_count(SAVE_FILE_D, SAVEFILE_X2, 118);
+    //print_save_file_star_count(SAVE_FILE_A, SAVEFILE_X1, 78);
+    //print_save_file_star_count(SAVE_FILE_B, SAVEFILE_X2, 78);
+    //print_save_file_star_count(SAVE_FILE_C, SAVEFILE_X1, 118);
+    //print_save_file_star_count(SAVE_FILE_D, SAVEFILE_X2, 118);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     // Print menu names
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
@@ -1669,9 +1669,9 @@ void print_main_menu_strings(void) {
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
     print_menu_generic_string(MARIOTEXT_X1, 65, textMarioA);
-    print_menu_generic_string(MARIOTEXT_X2, 65, textMarioB);
-    print_menu_generic_string(MARIOTEXT_X1, 105, textMarioC);
-    print_menu_generic_string(MARIOTEXT_X2, 105, textMarioD);
+    //print_menu_generic_string(MARIOTEXT_X2, 65, textMarioB);
+    //print_menu_generic_string(MARIOTEXT_X1, 105, textMarioC);
+    //print_menu_generic_string(MARIOTEXT_X2, 105, textMarioD);
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 

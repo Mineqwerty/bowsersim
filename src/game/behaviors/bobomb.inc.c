@@ -33,8 +33,32 @@ void bobomb_spawn_coin(void) {
 
 void bobomb_act_explode(void) {
     struct Object *explosion;
-    if (o->oTimer < 5)
+    if (o->oTimer < 5){
+        if (o->oBehParams2ndByte != 1) {
         cur_obj_scale(1.0 + (f32) o->oTimer / 5.0);
+        }
+        else {
+           cur_obj_scale(3.0 + (f32) o->oTimer / 5.0); 
+        }
+
+        switch (o->oTimer) {
+                    case 1:
+                    if (o->oBehParams2ndByte == 1) {
+                        spawn_orange_number(1, 0, 0, 0, 19); 
+                    spawn_orange_number(5, 0, 0, 0, 13); 
+                    
+                    spawn_orange_number(0, 0, 0, 0, 7); 
+                    
+                    spawn_orange_number(0, 0, 0, 0, 1);}
+                    else {
+                        spawn_orange_number(3, 0, 0, 0, 13); 
+                    
+                    spawn_orange_number(0, 0, 0, 0, 7); 
+                    
+                    spawn_orange_number(0, 0, 0, 0, 1);
+                    } break;
+                        }
+    }
     else {
         explosion = spawn_object(o, MODEL_EXPLOSION, bhvExplosion);
         explosion->oGraphYOffset += 100.0f;
@@ -148,12 +172,12 @@ void generic_bobomb_free_loop(void) {
 
         case BOBOMB_ACT_LAVA_DEATH:
             if (obj_lava_death() == 1)
-                create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
+                //create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
 
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
-            create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
+            //create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
 
@@ -175,12 +199,12 @@ void stationary_bobomb_free_loop(void) {
 
         case BOBOMB_ACT_LAVA_DEATH:
             if (obj_lava_death() == 1)
-                create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
+                //create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
 
         case BOBOMB_ACT_DEATH_PLANE_DEATH:
             o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
-            create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
+            //create_respawner(MODEL_BLACK_BOBOMB, bhvBobomb, 3000);
             break;
     }
 

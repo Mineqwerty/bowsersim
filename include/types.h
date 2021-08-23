@@ -331,6 +331,9 @@ struct MarioState
     int bowserAttack;
     int spawnedObjectsTotal;
     int cutsceneTimer;
+
+    int scoreHUD[10];
+    f32 bowserHeight;
 };
 
 #endif // TYPES_H

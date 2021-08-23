@@ -43,7 +43,7 @@ if (bowserPosDiff < 100.0f * toadDetect) {
     o->oEnemyToadSpeed = 0;
     
     
-    if (gMarioState->bowserAttack == 2) {
+    if (gMarioState->bowserAttack == 2 && gBowserObject->oVelY < 0) {
         play_sound(SOUND_OBJ_UKIKI_CHATTER_LONG, gMarioState->marioObj->header.gfx.cameraToObject);
         o->oEnemyToadDeath = 3;
     }
@@ -53,7 +53,7 @@ if (bowserPosDiff < 100.0f * toadDetect) {
     }
     }
     if (o->oBehParams2ndByte == 2) {
-        if (gMarioState->bowserAttack == 2) {
+        if (gMarioState->bowserAttack == 2 && gBowserObject->oVelY < 0) {
         play_sound(SOUND_OBJ_UKIKI_CHATTER_LONG, gMarioState->marioObj->header.gfx.cameraToObject);
         o->oEnemyToadSpeed = 0;
     o->oEnemyToadDeath = 3;
@@ -102,8 +102,16 @@ void kill_toad(void) {
         gMarioState->spawnedObjects -= 1;
         obj_mark_for_deletion(o);
         break;
-        case 1: if (o->oEnemyToadTimer < 16) {
-        obj_scale_xyz(o, 1, 1.0f / o->oEnemyToadTimer, 1);
+        case 1: 
+         if (o->oEnemyToadTimer < 16) {
+             switch (o->oBehParams2ndByte) {
+                 case 0:
+        obj_scale_xyz(o, 1, 1.0f / o->oEnemyToadTimer, 1); break;
+        case 1:
+        obj_scale_xyz(o, 0.25f, 0.25f / o->oEnemyToadTimer, 0.25f); break;
+        case 2:
+        obj_scale_xyz(o, 3.0f, 3.0f / o->oEnemyToadTimer, 3.0f); break;
+             }
         }
         else if (o->oEnemyToadTimer > 30) {
             obj_mark_for_deletion(o);
@@ -115,6 +123,18 @@ void kill_toad(void) {
                 }
             gMarioState->spawnedObjects -= 1;
         }
+
+
+                switch (o->oEnemyToadTimer) {
+                    case 1:
+                    spawn_orange_number(1, 0, 0, 0, 13); break;
+                    case 7:
+                    spawn_orange_number(0, 0, 0, 0, 7); break;
+                    case 13:
+                    spawn_orange_number(0, 0, 0, 0, 1); break;
+                        }
+
+
         break;
         case 2:
             if (o->oEnemyToadTimer == 1) {
@@ -125,9 +145,28 @@ void kill_toad(void) {
             gMarioState->bowserPoints += 200;
             gMarioState->spawnedObjects -= 1;
         }
+
+
+        switch (o->oEnemyToadTimer) {
+                    case 1:
+                    spawn_orange_number(2, 0, 0, 0, 13); break;
+                    case 7:
+                    spawn_orange_number(0, 0, 0, 0, 7); break;
+                    case 13:
+                    spawn_orange_number(0, 0, 0, 0, 1); break;
+                        }
+
+
         break;
         case 3: if (o->oEnemyToadTimer < 16) {
-        obj_scale_xyz(o, 1, 1.0f / o->oEnemyToadTimer, 1);
+        switch (o->oBehParams2ndByte) {
+                 case 0:
+        obj_scale_xyz(o, 1, 1.0f / o->oEnemyToadTimer, 1); break;
+        case 1:
+        obj_scale_xyz(o, 0.25f, 0.25f / o->oEnemyToadTimer, 0.25f); break;
+        case 2:
+        obj_scale_xyz(o, 3.0f, 3.0f / o->oEnemyToadTimer, 3.0f); break;
+             }
         }
         else if (o->oEnemyToadTimer > 30) {
             obj_mark_for_deletion(o);
@@ -139,6 +178,18 @@ void kill_toad(void) {
                 }
             gMarioState->spawnedObjects -= 1;
         }
+
+
+        switch (o->oEnemyToadTimer) {
+                    case 1:
+                    spawn_orange_number(2, 0, 0, 0, 13); break;
+                    case 7:
+                    spawn_orange_number(5, 0, 0, 0, 7); break;
+                    case 13:
+                    spawn_orange_number(0, 0, 0, 0, 1); break;
+                        }
+
+
         break;
     }
 }

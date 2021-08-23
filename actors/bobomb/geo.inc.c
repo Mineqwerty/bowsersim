@@ -1,6 +1,6 @@
 // 0x0F0007B8
 const GeoLayout black_bobomb_geo[] = {
-   GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 70),
+   GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 24576),
       GEO_OPEN_NODE(),
@@ -50,7 +50,7 @@ const GeoLayout black_bobomb_geo[] = {
 
 // 0x0F0008F4
 const GeoLayout bobomb_buddy_geo[] = {
-   GEO_SHADOW(SHADOW_CIRCLE_4_VERTS, 0xC8, 70),
+   GEO_CULLING_RADIUS(300),
    GEO_OPEN_NODE(),
       GEO_SCALE(0x00, 24576),
       GEO_OPEN_NODE(),

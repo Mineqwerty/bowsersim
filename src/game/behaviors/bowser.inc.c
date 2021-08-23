@@ -963,7 +963,7 @@ void bowser_act_charge_mario(void) {
                 o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
             }
             if (gPlayer1Controller->stickX == 0 && gPlayer1Controller->stickY == 0) {
-        o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
+        //o->oSubAction = BOWSER_SUB_ACT_CHARGE_SLIP;
     }
             if (cur_obj_init_animation_and_check_if_near_end(BOWSER_ANIM_RUN)) {
                 o->oBowserTimer++;
@@ -979,7 +979,9 @@ void bowser_act_charge_mario(void) {
                 }
             }
             // Rotate to Mario
+            if (gPlayer1Controller->stickX != 0 || gPlayer1Controller->stickY != 0) {
             cur_obj_rotate_yaw_toward((atan2s(-gPlayer1Controller->stickY, gPlayer1Controller->stickX) + gMarioState->area->camera->yaw), 0x200);
+            }
             break;
         case BOWSER_SUB_ACT_CHARGE_SLIP:
             // Spawn smoke puff while slipping
@@ -1825,7 +1827,7 @@ void bhv_bowser_init(void) {
     o->oHealth = sBowserHealth[level];
     // Start camera event, this event is not defined so maybe
     // the "start arena" cutscene was originally called this way
-    //cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_INIT);
+    cur_obj_start_cam_event(o, CAM_EVENT_BOWSER_JUMP);
     o->oAction = BOWSER_ACT_DEFAULT;
     // Set eyes status
     o->oBowserEyesTimer = 0;
