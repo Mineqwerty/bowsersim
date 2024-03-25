@@ -1176,6 +1176,11 @@
 
 #define /*0x100*/ oBigSpawnCooldown  OBJECT_FIELD_S32(0x1B)
 #define /*0x100*/ oBigSpawnCount  OBJECT_FIELD_S32(0x1C)
+
+#define /*0x100*/ oChasingBowser  OBJECT_FIELD_S32(0x1B)
+#define /*0x100*/ oDiving  OBJECT_FIELD_S32(0x1C)
+#define           oPenguinFloor    OBJECT_FIELD_F32(0x1D)
+#define /*0x100*/ oPenguinDeath  OBJECT_FIELD_S32(0x1E)
 /*Custom general defines:
 
 

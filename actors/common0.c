@@ -76,3 +76,13 @@ UNUSED static const u64 binid_17 = 17;
 
 #include "koopa_shell/model.inc.c"
 UNUSED static const u64 binid_18 = 18;
+
+#include "penguin/model.inc.c"
+#include "penguin/anims/data.inc.c"
+#include "penguin/anims/table.inc.c"
+#include "penguin/collision.inc.c"
+
+
+#include "minmine/model.inc.c"
+#include "minmine/anims/data.inc.c"
+#include "minmine/anims/table.inc.c"

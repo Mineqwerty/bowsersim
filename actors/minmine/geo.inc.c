@@ -1,0 +1,26 @@
+#include "src/game/envfx_snow.h"
+
+const GeoLayout minmine_geo[] = {
+	GEO_NODE_START(),
+	GEO_OPEN_NODE(),
+		GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 0, 0, 0, 0, 90, 0),
+		GEO_OPEN_NODE(),
+			GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, minmine_main_mesh_layer_1),
+			GEO_OPEN_NODE(),
+				GEO_DISPLAY_LIST(LAYER_ALPHA, minmine_main_mesh_layer_4),
+				GEO_BILLBOARD_WITH_PARAMS_AND_DL(LAYER_ALPHA, 0, 70, 0, minmine_billboard_body_mesh_layer_4),
+				GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 15, 93, 90, 0, 0, 91),
+				GEO_OPEN_NODE(),
+					GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, minmine_right_foot_mesh_layer_1),
+				GEO_CLOSE_NODE(),
+				GEO_TRANSLATE_ROTATE(LAYER_OPAQUE, 15, 93, -81, 0, 0, 91),
+				GEO_OPEN_NODE(),
+					GEO_ANIMATED_PART(LAYER_OPAQUE, 0, 0, 0, minmine_right_foot_001_mesh_layer_1),
+				GEO_CLOSE_NODE(),
+			GEO_CLOSE_NODE(),
+		GEO_CLOSE_NODE(),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, minmine_material_revert_render_settings),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, minmine_material_revert_render_settings),
+	GEO_CLOSE_NODE(),
+	GEO_END(),
+};

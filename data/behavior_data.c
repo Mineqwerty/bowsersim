@@ -3744,6 +3744,20 @@ const BehaviorScript bhvBobomb[] = {
     END_LOOP(),
 };
 
+const BehaviorScript bhvMinmine[] = {
+    BEGIN(OBJ_LIST_DESTRUCTIVE),
+    OR_INT(oFlags, (OBJ_FLAG_PERSISTENT_RESPAWN | OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO | OBJ_FLAG_HOLDABLE | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    LOAD_ANIMATIONS(oAnimations, minmine_anims),
+    DROP_TO_FLOOR(),
+    ANIMATE(0),
+    SET_INT(oIntangibleTimer, 0),
+    SET_HOME(),
+    CALL_NATIVE(bhv_bobomb_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bobomb_loop),
+    END_LOOP(),
+};
+
 const BehaviorScript bhvBobombFuseSmoke[] = {
     BEGIN(OBJ_LIST_DEFAULT),
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
@@ -6149,5 +6163,34 @@ const BehaviorScript bhvBigSpawner[] = {
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     BEGIN_LOOP(),
         CALL_NATIVE(big_spawner_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBowsersCock[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    DROP_TO_FLOOR(),
+    CALL_NATIVE(bhv_bowsers_cock_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bowsers_cock_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvBowsersCock2[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    DROP_TO_FLOOR(),
+    CALL_NATIVE(bhv_bowsers_cock2_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_bowsers_cock2_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvFregrber[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, (OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_fregrber_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_fregrber_loop),
     END_LOOP(),
 };

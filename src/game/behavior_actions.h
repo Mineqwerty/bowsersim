@@ -583,3 +583,10 @@ extern struct WaterDropletParams gShallowWaterSplashDropletParams;
 extern struct WaterDropletParams gShallowWaterWaveDropletParams;
 
 #endif // BEHAVIOR_ACTIONS_H
+
+void bhv_bowsers_cock_init(void);
+void bhv_bowsers_cock_loop(void);
+void bhv_bowsers_cock2_init(void);
+void bhv_bowsers_cock2_loop(void);
+void bhv_fregrber_init(void);
+void bhv_fregrber_loop(void);

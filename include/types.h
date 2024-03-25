@@ -332,8 +332,9 @@ struct MarioState
     int spawnedObjectsTotal;
     int cutsceneTimer;
 
-    int scoreHUD[10];
+    int challengeRating;
     f32 bowserHeight;
+    int bowserDamage;
 };
 
 #endif // TYPES_H

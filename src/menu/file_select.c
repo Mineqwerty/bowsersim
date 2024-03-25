@@ -1204,11 +1204,11 @@ void bhv_menu_button_manager_init(void) {
     if (save_file_exists(SAVE_FILE_B) == TRUE) {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] =
             spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_SAVE_BUTTON_FADE,
-                                      bhvMenuButton, 1500, 280000, 0, 0, 0, 0);
+                                      bhvMenuButton, 1500, 2800, 0, 0, 0, 0);
     } else {
         sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B] =
             spawn_object_rel_with_rot(gCurrentObject, MODEL_MAIN_MENU_MARIO_NEW_BUTTON_FADE,
-                                      bhvMenuButton, 1500, 280000, 0, 0, 0, 0);
+                                      bhvMenuButton, 1500, 2800, 0, 0, 0, 0);
     }
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B]->oMenuButtonScale = 1.0f;
     // File C
@@ -1356,9 +1356,11 @@ void bhv_menu_button_manager_loop(void) {
             break;
         case MENU_BUTTON_PLAY_FILE_A:
             load_main_menu_save_file(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_A], 1);
+            gMode = 0;
             break;
         case MENU_BUTTON_PLAY_FILE_B:
             load_main_menu_save_file(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_B], 2);
+            gMode = 1;
             break;
         case MENU_BUTTON_PLAY_FILE_C:
             load_main_menu_save_file(sMainMenuButtons[MENU_BUTTON_PLAY_FILE_C], 3);

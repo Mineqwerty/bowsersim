@@ -48,6 +48,7 @@ OSContPad gControllerPads[4];
 u8 gControllerBits;
 u8 gIsConsole = TRUE; // Needs to be initialized before audio_reset_session is called
 int gTimer;
+int gMode;
 u8 gBorderHeight;
 #ifdef CUSTOM_DEBUG
 u8 gCustomDebugMode;

@@ -109,3 +109,24 @@ void big_spawner_loop(void) {
     }
 
 }
+
+void endless_spawner_loop(void) {
+    int randHundred = random_u16() / 2621;
+    // TOAD 0
+    // BOBOMB 1
+    // PENGUIN 2
+    int spawnPick = 0;
+    int spawnPool1[24] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2};
+    int spawnPool2[24] = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3};
+
+switch(gMarioState->challengeRating) {
+    case 1:
+    spawnPick = spawnPool1[randHundred];
+    break;
+
+    case 2:
+    spawnPick = spawnPool2[randHundred];
+    break;
+
+}
+}

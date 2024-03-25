@@ -329,6 +329,7 @@ extern const BehaviorScript bhvBlueCoinJumping[];
 extern const BehaviorScript bhvSeaweed[];
 extern const BehaviorScript bhvSeaweedBundle[];
 extern const BehaviorScript bhvBobomb[];
+extern const BehaviorScript bhvMinmine[];
 extern const BehaviorScript bhvBobombFuseSmoke[];
 extern const BehaviorScript bhvBobombBuddy[];
 extern const BehaviorScript bhvBobombBuddyOpensCannon[];
@@ -547,3 +548,7 @@ extern const BehaviorScript bhvEnemyBomb[];
 extern const BehaviorScript bhvSmallSpawner[];
 extern const BehaviorScript bhvBigSpawner[];
 #endif // BEHAVIOR_DATA_H
+
+extern const BehaviorScript bhvbhvBowsersCock[];
+extern const BehaviorScript bhvbhvBowsersCock2[];
+extern const BehaviorScript bhvbhvFregrber[];

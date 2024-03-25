@@ -27,3 +27,7 @@
 #include "metal_box/geo.inc.c"
 #include "exclamation_box_outline/geo.inc.c"
 #include "koopa_shell/geo.inc.c"
+
+#include "penguin/geo.inc.c"
+
+#include "minmine/geo.inc.c"

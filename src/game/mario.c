@@ -33,6 +33,8 @@
 #include "sound_init.h"
 #include "rumble_init.h"
 
+#include "levels/bob/header.h"
+
 u32 unused80339F10;
 s8 filler80339F1C[20];
 
@@ -1749,7 +1751,7 @@ s32 execute_mario_action(UNUSED struct Object *o) {
     int pointsNeeded;
     gTimer += 1;
 
-    //print_text_fmt_int(100, 100, "%d", gTimer);
+    print_text_fmt_int(100, 100, "%d", gMarioState->challengeRating);
     switch(gCurrLevelNum) {
         case LEVEL_BOWSER_1:
             pointsNeeded = 6000;
@@ -1763,6 +1765,56 @@ s32 execute_mario_action(UNUSED struct Object *o) {
         case LEVEL_CASTLE_GROUNDS:
             pointsNeeded = 9000;
         break;
+    }
+
+    if (gMode == 1) {
+        extern Lights1 bob_dl_f3d_material_lights;
+        static int lightChange[2];
+        int targetLightChange[62] = {100, 95, 255, /**/ 95, 185, 227, /**/ 58, 178, 194, /**/ 4, 140, 127, /**/ 18, 204, 127, /**/ 
+        4, 128, 37, /**/ 20, 92, 20, /**/ 53, 77, 41, /**/ 147, 181, 92, /**/ 177, 179, 59, /**/ 233, 237, 0, /**/ 242, 170, 2, /**/ 
+        143, 103, 10, /**/ 148, 78, 7, /**/ 101, 84, 110, /**/ 76, 12, 110, /**/ 148, 18, 135, /**/ 166, 8, 95, /**/ 191, 0, 0, /**/ 102, 0, 0 };
+
+        if (gMarioState->challengeRating == 0) {
+            gMarioState->challengeRating = 1;
+        }
+        else {
+            
+            if (lightChange[0] != targetLightChange[(gMarioState->challengeRating - 1)*3]) {
+                 if (lightChange[0] < targetLightChange[(gMarioState->challengeRating - 1)*3]) {
+                     lightChange[0] += 1;
+                 }
+                 else {
+                    lightChange[0] -= 1; 
+                 }
+            }
+            if (lightChange[1] != targetLightChange[(gMarioState->challengeRating - 1)*3 + 1]) {
+                 if (lightChange[1] < targetLightChange[(gMarioState->challengeRating - 1)*3 + 1]) {
+                     lightChange[1] += 1;
+                 }
+                 else {
+                    lightChange[1] -= 1; 
+                 }
+            }
+            if (lightChange[2] != targetLightChange[(gMarioState->challengeRating - 1)*3 + 2]) {
+                 if (lightChange[2] < targetLightChange[(gMarioState->challengeRating - 1)*3 + 2]) {
+                     lightChange[2] += 1;
+                 }
+                 else {
+                    lightChange[2] -= 1; 
+                 }
+            }
+        }
+
+            if (gPlayer1Controller->buttonPressed & D_JPAD) {
+                gMarioState->challengeRating += 1;
+            }
+
+        Lights1 adjustLights = gdSPDefLights1(
+	0x32, 0x2F, 0x7F,
+	lightChange[0], lightChange[1], lightChange[2], 0x28, 0x28, 0x28);
+
+    bcopy(&adjustLights, segmented_to_virtual(&bob_dl_f3d_material_lights), sizeof(adjustLights));
+
     }
 
     if (gMarioState->bowserPoints >= pointsNeeded) {
@@ -1794,7 +1846,14 @@ s32 execute_mario_action(UNUSED struct Object *o) {
 
 
     if (gCurrLevelNum == LEVEL_CASTLE_GROUNDS) {
+        switch(gMode) {
+            case 0:
         initiate_warp(LEVEL_BOWSER_1, 1, 0x0A, 0);
+        break;
+        case 1:
+        initiate_warp(LEVEL_BOB, 1, 0x0A, 0);
+        break;
+    }
     }
 
     if (gMarioState->action) {

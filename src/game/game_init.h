@@ -43,6 +43,7 @@ extern struct GfxPool *gGfxPool;
 extern u8 gControllerBits;
 extern u8 gIsConsole;
 extern int gTimer;
+extern int gMode;
 #ifdef WIDE
 extern s16 gWidescreen;
 #endif

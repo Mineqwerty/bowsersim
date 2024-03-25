@@ -324,6 +324,11 @@ void bowser_bitdw_actions(void) {
     //if (o->oBowserIsReacting == FALSE) {
         //if (o->oBowserStatus & BOWSER_STATUS_ANGLE_MARIO) {
             //if (o->oDistanceToMario < 1500.0f) {
+                if (gMarioState->bowserDamage > 0) {
+                    return o->oAction = BOWSER_ACT_HIT_MINE;
+                    
+                }
+
                 if (gPlayer1Controller->buttonPressed & B_BUTTON) {
                 return o->oAction = BOWSER_ACT_BREATH_FIRE; // nearby
                 }
@@ -335,6 +340,8 @@ void bowser_bitdw_actions(void) {
                 if (gPlayer1Controller->buttonDown & Z_TRIG) {
                 return o->oAction = BOWSER_ACT_CHARGE_MARIO; 
                 }
+
+                
             //}
        // } else {
             // Keep walking
@@ -510,6 +517,11 @@ void bowser_act_default(void) {
 void bowser_act_breath_fire(void) {
     gMarioState->bowserAttack = 3;
     o->oForwardVel = 0.0f;
+    if (gMarioState->bowserDamage > 0) {
+                    return o->oAction = BOWSER_ACT_HIT_MINE;
+                    
+                }
+
     if (o->oTimer == 0) {
         cur_obj_play_sound_2(SOUND_OBJ_BOWSER_INHALING);
     }
@@ -528,6 +540,12 @@ void bowser_act_walk_to_mario(void) {
     s16 turnSpeed;
     s16 angleFromMario = abs_angle_diff(o->oMoveAngleYaw, o->oAngleToMario);
     gMarioState->bowserAttack = 0;
+
+    if (gMarioState->bowserDamage > 0) {
+                    return o->oAction = BOWSER_ACT_HIT_MINE;
+                    
+                }
+
     if (gPlayer1Controller->stickX == 0 && gPlayer1Controller->stickY == 0) {
         return o->oAction = BOWSER_ACT_DEFAULT;
     }
@@ -663,9 +681,9 @@ void bowser_act_spit_fire_into_sky(void) {
 void bowser_act_hit_mine(void) {
     // Similar vel values from bowser_fly_back_dead
     if (o->oTimer == 0) {
-        o->oForwardVel = -400.0f;
-        o->oVelY = 100.0f;
-        o->oMoveAngleYaw = o->oBowserAngleToCentre + 0x8000;
+        o->oForwardVel = -50.0f;
+        o->oVelY = 20.0f;
+        //o->oMoveAngleYaw = o->oBowserAngleToCentre + 0x8000;
         o->oBowserEyesShut = TRUE; // close eyes
     }
     // Play flip animation
@@ -689,11 +707,12 @@ void bowser_act_hit_mine(void) {
     } else if (o->oSubAction == BOWSER_SUB_ACT_HIT_MINE_STOP) {
         if (cur_obj_check_if_near_animation_end()) {
             // Makes Bowser dance at one health (in BITS)
-            if (o->oHealth == 1) {
-                o->oAction = BOWSER_ACT_DANCE;
-            } else {
+           // if (o->oHealth == 1) {
+             //   o->oAction = BOWSER_ACT_DANCE;
+            //} else {
+                gMarioState->bowserDamage = 0;
                 o->oAction = BOWSER_ACT_DEFAULT;
-            }
+            //}
             o->oBowserEyesShut = FALSE; // open eyes
         }
     } else {
@@ -940,6 +959,11 @@ void bowser_act_charge_mario(void) {
     if (o->oTimer == 0) {
         o->oForwardVel = 0.0f;
     }
+    if (gMarioState->bowserDamage > 0) {
+                    return o->oAction = BOWSER_ACT_HIT_MINE;
+                    
+                }
+                
     if (gPlayer1Controller->buttonPressed & B_BUTTON) {
                 return o->oAction = BOWSER_ACT_BREATH_FIRE; 
                 }

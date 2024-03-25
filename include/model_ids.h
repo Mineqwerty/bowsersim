@@ -376,7 +376,7 @@
 #define MODEL_SPINDRIFT                   0x54        // spindrift_geo
 #define MODEL_MR_BLIZZARD_HIDDEN          0x55        // mr_blizzard_hidden_geo
 #define MODEL_MR_BLIZZARD                 0x56        // mr_blizzard_geo
-#define MODEL_PENGUIN                     0x57        // penguin_geo
+
 
 // group 8
 #define MODEL_CAP_SWITCH_EXCLAMATION      0x54        // cap_switch_exclamation_seg5_dl_05002E00
@@ -410,12 +410,12 @@
 
 // second set of actor bins, (0x64-0x73)
 // group 12
-#define MODEL_BOWSER                      0x64        // bowser_geo
-#define MODEL_BOWSER_BOMB_CHILD_OBJ       0x65        // bowser_bomb_geo - Spawns as a chill object in bowser's behavior command, causing an explosion if it touches a bomb
-#define MODEL_BOWSER_SMOKE                0x66        // bowser_impact_smoke_geo
-#define MODEL_BOWSER_FLAMES               0x67        // bowser_flames_geo
-#define MODEL_BOWSER_WAVE                 0x68        // invisible_bowser_accessory_geo
-#define MODEL_BOWSER_NO_SHADOW            0x69        // bowser_geo_no_shadow
+#define MODEL_BOWSER                      0x164        // bowser_geo
+#define MODEL_BOWSER_BOMB_CHILD_OBJ       0x165        // bowser_bomb_geo - Spawns as a chill object in bowser's behavior command, causing an explosion if it touches a bomb
+#define MODEL_BOWSER_SMOKE                0x166        // bowser_impact_smoke_geo
+#define MODEL_BOWSER_FLAMES               0x167        // bowser_flames_geo
+#define MODEL_BOWSER_WAVE                 0x168        // invisible_bowser_accessory_geo
+#define MODEL_BOWSER_NO_SHADOW            0x169        // bowser_geo_no_shadow
 
 // group 13
 #define MODEL_BUB                         0x64        // cheep_cheep_geo
@@ -563,6 +563,9 @@
 #define MODEL_CHUCKYA                     0xDF        // chuckya_geo
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
 #define MODEL_TRAJECTORY_MARKER_BALL          0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
+
+#define MODEL_MINMINE                     0xFE
+#define MODEL_PENGUIN                     0x100        // penguin_geo
 
 // Menu Models (overwrites Level Geometry IDs)
 #define MODEL_MAIN_MENU_MARIO_SAVE_BUTTON         MODEL_LEVEL_GEOMETRY_03   // main_menu_geo_0001D0
